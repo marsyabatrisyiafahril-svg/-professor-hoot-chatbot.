@@ -1,0 +1,683 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Professor Hoot | Animal City</title>
+
+<style>
+
+*{box-sizing:border-box}
+
+body{
+
+  margin:0;
+
+  font-family:Arial,sans-serif;
+
+  background:linear-gradient(135deg,#b9ecff,#e8dcff);
+
+  color:#24344f;
+
+}
+
+.page{
+
+  max-width:850px;
+
+  min-height:100vh;
+
+  margin:auto;
+
+  padding:20px;
+
+}
+
+header{
+
+  background:#fff;
+
+  border:4px solid #fff;
+
+  border-radius:25px;
+
+  padding:20px;
+
+  text-align:center;
+
+  box-shadow:0 8px 25px #526b9b30;
+
+}
+
+header h1{
+
+  color:#6252bd;
+
+  margin:8px 0;
+
+  font-size:clamp(25px,5vw,38px);
+
+}
+
+header p{margin:5px;color:#60708b}
+
+.owl{font-size:65px}
+
+.tag{
+
+  display:inline-block;
+
+  background:#fff1b7;
+
+  padding:8px 15px;
+
+  border-radius:30px;
+
+  font-weight:bold;
+
+  color:#765321;
+
+}
+
+.chat{
+
+  margin-top:18px;
+
+  background:white;
+
+  border-radius:24px;
+
+  overflow:hidden;
+
+  box-shadow:0 8px 25px #526b9b30;
+
+}
+
+.chat-top{
+
+  background:#6655c6;
+
+  color:white;
+
+  padding:15px 20px;
+
+  font-weight:bold;
+
+}
+
+.messages{
+
+  height:350px;
+
+  overflow-y:auto;
+
+  padding:20px;
+
+  background:#f6f8ff;
+
+}
+
+.message{
+
+  max-width:85%;
+
+  padding:13px 16px;
+
+  margin-bottom:12px;
+
+  border-radius:18px;
+
+  line-height:1.5;
+
+  white-space:pre-wrap;
+
+}
+
+.bot{
+
+  background:white;
+
+  border:1px solid #e1e5f5;
+
+  border-bottom-left-radius:4px;
+
+}
+
+.user{
+
+  background:#d7cfff;
+
+  margin-left:auto;
+
+  border-bottom-right-radius:4px;
+
+}
+
+.quick{
+
+  padding:15px;
+
+  background:white;
+
+}
+
+.quick h3{
+
+  margin:0 0 12px;
+
+  font-size:15px;
+
+}
+
+.buttons{
+
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:8px;
+
+}
+
+button{
+
+  cursor:pointer;
+
+  border:0;
+
+  font-weight:bold;
+
+  font-size:14px;
+
+}
+
+.question{
+
+  background:#e8e5ff;
+
+  color:#44359e;
+
+  border-radius:20px;
+
+  padding:10px 13px;
+
+}
+
+.question:hover{background:#d4ccff}
+
+.input-area{
+
+  display:flex;
+
+  gap:10px;
+
+  padding:15px;
+
+  border-top:1px solid #e5e5f0;
+
+}
+
+input{
+
+  flex:1;
+
+  min-width:0;
+
+  padding:13px;
+
+  border:2px solid #dedcf2;
+
+  border-radius:14px;
+
+  font-size:16px;
+
+}
+
+input:focus{
+
+  outline:none;
+
+  border-color:#7563d5;
+
+}
+
+.send{
+
+  background:#6655c6;
+
+  color:white;
+
+  border-radius:14px;
+
+  padding:12px 20px;
+
+}
+
+footer{
+
+  text-align:center;
+
+  padding:20px 5px;
+
+  font-size:13px;
+
+  color:#566681;
+
+}
+
+.small{
+
+  font-size:12px;
+
+  color:#65718a;
+
+  margin-top:12px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="page">
+
+<header>
+
+  <div class="owl">🦉</div>
+
+  <div class="tag">WELCOME TO ANIMAL CITY!</div>
+
+  <h1>Professor Hoot's Grammar Helper</h1>
+
+  <p>Adjective Adventure: City of Words</p>
+
+  <p>Your friendly Year 4 Writing Assistant!</p>
+
+</header>
+
+<section class="chat">
+
+  <div class="chat-top">
+
+    🟢 Professor Hoot · Grammar Help Desk
+
+  </div>
+
+  <div class="messages" id="messages"
+
+       role="log" aria-live="polite">
+
+  </div>
+
+  <div class="quick">
+
+    <h3>✨ Choose a question:</h3>
+
+    <div class="buttons">
+
+      <button class="question"
+
+        onclick="ask('What is a comparative adjective?')">
+
+        Comparative
+
+      </button>
+
+      <button class="question"
+
+        onclick="ask('What is a superlative adjective?')">
+
+        Superlative
+
+      </button>
+
+      <button class="question"
+
+        onclick="ask('How do I write a sentence?')">
+
+        Sentence Help
+
+      </button>
+
+      <button class="question"
+
+        onclick="ask('What are the spelling rules?')">
+
+        Spelling Rules
+
+      </button>
+
+      <button class="question"
+
+        onclick="ask('What are irregular adjectives?')">
+
+        Irregular Adjectives
+
+      </button>
+
+      <button class="question"
+
+        onclick="ask('Give me a writing tip')">
+
+        Writing Tips
+
+      </button>
+
+    </div>
+
+    <p class="small">
+
+      This is a guided chatbot. It answers questions
+
+      about comparative and superlative adjectives.
+
+    </p>
+
+  </div>
+
+  <form class="input-area" id="chatForm">
+
+    <input id="userInput" type="text"
+
+      placeholder="Ask Professor Hoot..."
+
+      maxlength="250" autocomplete="off"
+
+      aria-label="Your grammar question">
+
+    <button class="send" type="submit">Send ➤</button>
+
+  </form>
+
+</section>
+
+<footer>
+
+  🐾 Animal City Learning Adventure
+
+  <p>Learn · Practise · Write</p>
+
+</footer>
+
+</div>
+
+<script>
+
+const messages = document.getElementById("messages");
+
+const input = document.getElementById("userInput");
+
+function addMessage(text, sender){
+
+  const bubble = document.createElement("div");
+
+  bubble.className = "message " + sender;
+
+  bubble.textContent = text;
+
+  messages.appendChild(bubble);
+
+  messages.scrollTop = messages.scrollHeight;
+
+}
+
+function getAnswer(question){
+
+  const q = question.toLowerCase().trim();
+
+  if(q.includes("hello") || q === "hi" ||
+
+     q.includes("good morning")){
+
+    return "Hoot hoot! Hello, Explorer! 🦉\n" +
+
+      "I can help you learn comparative and " +
+
+      "superlative adjectives. Choose a question!";
+
+  }
+
+  if(q.includes("irregular") ||
+
+     q.includes("better") || q.includes("best") ||
+
+     q.includes("worse")){
+
+    return "Some adjectives have special forms! 🌟\n\n" +
+
+      "good → better → best\n" +
+
+      "bad → worse → worst\n" +
+
+      "far → farther → farthest\n\n" +
+
+      "Example:\n" +
+
+      "This drawing is better than mine.\n" +
+
+      "This is the best drawing in the class.";
+
+  }
+
+  if(q.includes("spell") || q.includes("rule") ||
+
+     q.includes("change y") || q.includes("double")){
+
+    return "Let's learn spelling rules! ✏️\n\n" +
+
+      "1. Add -er / -est:\n" +
+
+      "tall → taller → tallest\n\n" +
+
+      "2. If the word ends in -e, add -r / -st:\n" +
+
+      "large → larger → largest\n\n" +
+
+      "3. Change consonant + y to i:\n" +
+
+      "happy → happier → happiest\n\n" +
+
+      "4. Double the final consonant in words " +
+
+      "like big:\n" +
+
+      "big → bigger → biggest\n\n" +
+
+      "5. Some longer adjectives use more / most:\n" +
+
+      "beautiful → more beautiful → most beautiful.";
+
+  }
+
+  if(q.includes("superlative") ||
+
+     q.includes("three") || q.includes("most") ||
+
+     q.includes("tallest") || q.includes("biggest")){
+
+    return "A SUPERLATIVE adjective compares " +
+
+      "THREE OR MORE people, animals or things. 🏆\n\n" +
+
+      "Pattern:\n" +
+
+      "Subject + is + the + superlative adjective.\n\n" +
+
+      "Example:\n" +
+
+      "The green tree is the tallest of the " +
+
+      "three trees.\n\n" +
+
+      "Remember to use THE before a superlative!";
+
+  }
+
+  if(q.includes("comparative") ||
+
+     q.includes("two") || q.includes("than") ||
+
+     q.includes("taller") || q.includes("bigger")){
+
+    return "A COMPARATIVE adjective compares " +
+
+      "TWO people, animals or things. 🐾\n\n" +
+
+      "Pattern:\n" +
+
+      "A + is + comparative adjective + than + B.\n\n" +
+
+      "Example:\n" +
+
+      "The orange kite is higher than the " +
+
+      "green kite.\n\n" +
+
+      "Remember to use THAN!";
+
+  }
+
+  if(q.includes("sentence") || q.includes("write") ||
+
+     q.includes("arrange") || q.includes("help")){
+
+    return "Let's build a comparison sentence! ✍️\n\n" +
+
+      "Step 1: Choose two things.\n" +
+
+      "Step 2: Choose an adjective.\n" +
+
+      "Step 3: Use the correct comparative form.\n" +
+
+      "Step 4: Add THAN.\n\n" +
+
+      "Example:\n" +
+
+      "The yellow ruler is longer than the " +
+
+      "blue ruler.\n\n" +
+
+      "For three or more things, try a " +
+
+      "superlative adjective!";
+
+  }
+
+  if(q.includes("tip") || q.includes("capital") ||
+
+     q.includes("full stop") || q.includes("punctuation")){
+
+    return "Professor Hoot's Writing Tips! 🦉\n\n" +
+
+      "✓ Start with a CAPITAL letter.\n" +
+
+      "✓ Write a COMPLETE sentence.\n" +
+
+      "✓ Use the correct adjective form.\n" +
+
+      "✓ Use THAN for comparisons of two.\n" +
+
+      "✓ Use THE with superlatives.\n" +
+
+      "✓ End with a FULL STOP.\n\n" +
+
+      "You can do it, Explorer!";
+
+  }
+
+  if(q.includes("adjective") || q.includes("grammar")){
+
+    return "An adjective describes a person, " +
+
+      "animal, place or thing. 🌈\n\n" +
+
+      "Examples: tall, small, happy and fast.\n\n" +
+
+      "Comparative: taller\n" +
+
+      "Superlative: tallest\n\n" +
+
+      "Ask me about comparative or superlative " +
+
+      "adjectives to learn more!";
+
+  }
+
+  return "Hoot hoot! 🦉 I'm still learning " +
+
+    "how to answer that question.\n\n" +
+
+    "Try asking:\n" +
+
+    "• What is a comparative adjective?\n" +
+
+    "• What is a superlative adjective?\n" +
+
+    "• What are the spelling rules?\n" +
+
+    "• How do I write a sentence?\n\n" +
+
+    "Or tap one of the question buttons!";
+
+}
+
+function ask(question){
+
+  const text = question.trim();
+
+  if(!text) return;
+
+  addMessage(text, "user");
+
+  addMessage(getAnswer(text), "bot");
+
+}
+
+document.getElementById("chatForm")
+
+  .addEventListener("submit", function(event){
+
+    event.preventDefault();
+
+    const question = input.value.trim();
+
+    if(!question) return;
+
+    ask(question);
+
+    input.value = "";
+
+    input.focus();
+
+  });
+
+addMessage(
+
+  "Hoot hoot! Welcome to Animal City! 🦉✨\n\n" +
+
+  "I'm Professor Hoot, your friendly grammar helper.\n\n" +
+
+  "Need help with comparative and superlative " +
+
+  "adjectives? Choose a question below or type " +
+
+  "your question!",
+
+  "bot"
+
+);
+
+</script>
+
+</body>
+
+</html>
